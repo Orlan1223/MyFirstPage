@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0">
+    <link rel="stylesheet" href="misEstilos.css">
+    <script src="https://kit.fontawesome.com/f66e96e125.js" crossorigin="anonymous"></script>
+    <title>JUEGO</title>
+</head>
+<body onload="reiniciar_Pagina()">
+    <header>
+        <nav class="nav">
+            <ul class="nav__ul">
+                <li class="nav__li"><i class="fas fa-home"></i><a href="#">Inicio</a></li>
+                <li class="nav__li"><i class="fas fa-dollar-sign"></i><a href="#">Gana dinero</a></li>
+                <li class="nav__li"><i class="fas fa-person"></i><a href="#">Sobre nosotros</a></li>
+                <li class="nav__li"><i class="fas fa-handshake-angle"></i><a href="#">Ayuda</a></li>
+            </ul>
+            <ul class="nav__responsive-ul">
+                <div class="nav__responsive-buttom"></div>
+                <div class="nav__li-container">
+                    <li class="nav__responsive-li"><i class="fas fa-home"></i><a href="#">Inicio</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-dollar-sign"></i><a href="#">Gana dinero</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-person"></i><a href="#">Sobre nosotros</a></li>
+                    <li class="nav__responsive-li"><i class="fas fa-handshake-angle"></i><a href="#">Ayuda</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    
+        </nav>
+    </header>
+    <div>
+        <h1 class="titulo"><b>Bienvenido a preguntando</b></h1>
+    </div>
+
+    <audio id="audioGameOver" src="audios/gameover.mp3" type="audio/mpeg">
+        sonido no habilitado
+    </audio>
+
+    <div>
+        <h2 class="subTitulo">¿Estas listo?</h2>
+        <p class="texto_1">Recuerda que tienes 30 segundos para responder las preguntas</p>
+    </div>
+
+    <div>
+        <button onclick="iniciar_Conteo()" id="iniciarConteo">Iniciar</button>
+        
+    </div>
+    <br>
+    <div>
+        <button onclick="reiniciar_Juego()" id="Reiniciar">Volver a intentar</button>
+        
+    </div>
+
+    <script>
+        let text_Button = document.getElementById("iniciarConteo");
+        let segundos = 30;
+        
+
+        function reiniciar_Juego(){
+            location.reload();
+        }
+
+
+        function iniciar_Conteo(){
+            setTimeout(tiempoCumplido, 30000);
+            intervaloDeTiempo = setInterval(ticTac, 1000);
+
+            document.getElementById("contador").textContent = 30;
+        }
+
+        function ticTac(){
+            let tiempo = document.getElementById("contador").textContent;
+
+            document.getElementById("contador").textContent = tiempo - 1;
+            }
+
+        function tiempoCumplido(){
+            clearInterval(intervaloDeTiempo);
+            document.getElementById("contador").textContent = 0;
+            alert ("Se acabo el tiempo, vuelve a intentarlo");
+            document.getElementById("audioGameOver").play();
+            
+           
+        }
+        
+        
+
+    </script>
+        <div class="contenedorContador">
+            <p>Tiempo disponible</p>
+            <p id="contador">00:00:30</p>
+        </div>
+        
+        <div  class="cuestionario">
+            <p>¿Cual es la capital de Francia?</p>
+            <input id="pregunta1" type="text">
+            <p>¿Como se llama el actual presidente de Colombia?</p>
+            <input id="pregunta2" type="text">
+            <p>¿Cual es la raiz cuadrada 12?</p>
+            <input id="pregunta3" type="text">
+            <p>¿Quien fue el padre de la bomba atomica?</p>
+            <input id="pregunta4" type="text">
+            <p>¿En que año finalizo la segunda guerra mundial?</p>
+            <input id="pregunta5" type="text">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+
+        <button id="fin_Cuestionario" onclick="Listo()">Listo</button>
+        <script>
+            function Listo(){
+                let respuesta1 = document.getElementById("pregunta1");
+                let respuesta2 = document.getElementById("pregunta2");
+                let respuesta3 = document.getElementById("pregunta3");
+                let respuesta4 = document.getElementById("pregunta4");
+                let respuesta5 = document.getElementById("pregunta5");
+                let fecha = new Date();
+                fecha.toLocaleDateString("es-Es");
+                alert( fecha + respuesta1.value + " " + respuesta2.value + " " + respuesta3.value + " " + respuesta4.value + " " + respuesta5.value);
+                clearInterval(intervaloDeTiempo);
+                document.getElementById("contador").textContent = 0;
+
+            }
+        </script>
+
+        <br>
+        <br>
+        <br>
+    <footer>
+        <p>copyrigth</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
